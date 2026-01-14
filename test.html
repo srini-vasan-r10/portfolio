@@ -9,14 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <style>
-        /* --- RESET & BASICS --- */
+        /* --- RESET & VARIABLES --- */
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.07);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-highlight: rgba(255, 255, 255, 0.15);
+            /* The "Ultra Glass" Recipe */
+            --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            --glass-shine: inset 0 0 20px rgba(255, 255, 255, 0.05);
+            
             --text-main: #ffffff;
-            --text-muted: #cbd5e1;
-            --accent: #38bdf8;
+            --text-muted: #e2e8f0;
+            --accent: #7dd3fc; /* Sky blue accent */
         }
 
         * {
@@ -28,13 +31,13 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0f172a; /* Deep Slate Blue */
+            background-color: #020617; /* Very dark slate */
             color: var(--text-main);
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* --- BACKGROUND ANIMATION (The Liquid) --- */
+        /* --- BACKGROUND ANIMATION (Lava Lamp) --- */
         .ambient-light {
             position: fixed;
             top: 0;
@@ -43,62 +46,59 @@
             height: 100%;
             overflow: hidden;
             z-index: -1;
-            background: #0f172a;
+            background: #020617;
         }
 
         .blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: float 20s infinite ease-in-out alternate;
+            filter: blur(90px);
+            opacity: 0.7; /* Increased opacity for better glass effect */
+            animation: move 25s infinite alternate;
         }
 
-        .blob:nth-child(1) { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #4f46e5; animation-delay: 0s; }
-        .blob:nth-child(2) { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #ec4899; animation-delay: -5s; }
-        .blob:nth-child(3) { top: 40%; left: 30%; width: 40vw; height: 40vw; background: #06b6d4; animation-delay: -10s; }
+        .blob-1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: #4f46e5; animation-delay: 0s; } /* Indigo */
+        .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #be185d; animation-delay: -5s; } /* Pink */
+        .blob-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: #0891b2; animation-delay: -10s; } /* Cyan */
 
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, 50px) scale(1.1); }
-            100% { transform: translate(-20px, 20px) scale(0.9); }
+        @keyframes move {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(40px, -40px) scale(1.1); }
         }
 
-        /* --- GLASS UTILITIES --- */
+        /* --- GLASS COMPONENT --- */
         .glass-panel {
             background: var(--glass-bg);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            border-top: 1px solid rgba(255,255,255,0.4); /* Highlight top edge */
-            border-bottom: 1px solid rgba(255,255,255,0.05); /* Shadow bottom edge */
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(50px) saturate(200%); /* Heavy iOS-style blur */
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            border: var(--glass-border);
+            border-top: 1px solid rgba(255,255,255,0.5); /* Highlight top edge */
+            border-left: 1px solid rgba(255,255,255,0.5); /* Highlight left edge */
+            box-shadow: var(--glass-shadow), var(--glass-shine);
             border-radius: 24px;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
         }
 
         .glass-panel:hover {
-            background: var(--glass-highlight);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.4);
-            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-5px) scale(1.01);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.6);
         }
 
         /* --- LAYOUT --- */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        section {
-            padding: 100px 0;
-        }
+        section { padding: 100px 0; }
 
-        /* --- NAVIGATION (Floating Dock Style) --- */
+        /* --- NAVBAR (Floating Dock) --- */
         .header {
             position: fixed;
-            top: 20px;
+            top: 24px;
             left: 0;
             width: 100%;
             z-index: 1000;
@@ -110,17 +110,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
-            border-radius: 50px; /* Pill shape */
+            padding: 16px 32px;
             width: 90%;
             max-width: 1000px;
+            border-radius: 100px;
             
-            /* Glass Effect for Navbar */
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            /* Navbar specific glass */
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .nav-logo {
@@ -130,82 +130,48 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .desktop-nav-menu {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 30px;
         }
 
         .nav-link {
             text-decoration: none;
             color: var(--text-muted);
             font-weight: 500;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: 0.3s;
             position: relative;
         }
 
-        .nav-link:hover {
-            color: #fff;
-        }
+        .nav-link:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 80px;
-        }
-
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
+        /* --- HERO --- */
+        .hero { min-height: 100vh; display: flex; align-items: center; }
+        .hero-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
 
         .hero-title {
-            font-size: 4rem;
+            font-size: 4.5rem;
             line-height: 1.1;
             font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #94a3b8);
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3));
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-        }
+        .hero-subtitle { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 40px; font-weight: 300; }
 
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-        }
+        .hero-buttons { display: flex; gap: 20px; }
 
         .btn {
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 14px 36px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
@@ -214,160 +180,76 @@
         .btn-primary {
             background: var(--accent);
             color: #0f172a;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 25px rgba(125, 211, 252, 0.4);
+            border: 1px solid rgba(255,255,255,0.4);
         }
 
-        .btn-primary:hover {
-            background: #7dd3fc;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
-            transform: translateY(-2px);
-        }
+        .btn-primary:hover { background: #fff; box-shadow: 0 0 40px rgba(125, 211, 252, 0.7); }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
             color: #fff;
             border: 1px solid rgba(255,255,255,0.2);
             backdrop-filter: blur(10px);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
 
-        /* --- SECTIONS & CARDS --- */
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 50px;
-        }
+        /* --- TYPOGRAPHY UTILS --- */
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 10px; font-weight: 700; }
+        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 60px; font-weight: 300; }
 
+        /* --- CARDS --- */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
         }
 
-        .card {
-            /* Inherits .glass-panel styles via class in HTML */
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .card { padding: 32px; display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; }
+        
+        /* Add a shiny reflection line on hover */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%;
             height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
         }
+        .card:hover::before { left: 150%; }
 
-        .card-title {
-            font-size: 1.25rem;
-            margin-bottom: 5px;
-            color: #fff;
-        }
+        .card-title { font-size: 1.25rem; margin-bottom: 8px; color: #fff; font-weight: 600; }
+        .card-subtitle { font-size: 0.9rem; color: var(--accent); margin-bottom: 16px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card-body p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
+        .card-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
 
-        .card-subtitle {
-            font-size: 0.9rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .card-body p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
-            margin-top: auto;
-        }
-
-        /* Skills List */
-        .skills-card ul {
-            list-style: none;
-            display: grid;
-            gap: 10px;
-        }
-
-        .skills-card li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-        }
-
-        .skills-card .material-symbols-outlined {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
+        /* --- LISTS --- */
+        .skills-list { list-style: none; display: grid; gap: 12px; }
+        .skills-list li { display: flex; align-items: center; gap: 12px; color: var(--text-muted); }
+        .skills-list .material-symbols-outlined { color: var(--accent); }
 
         /* --- CONTACT --- */
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .contact-link { display: flex; align-items: center; gap: 12px; padding: 16px 32px; text-decoration: none; color: white; border-radius: 20px; font-weight: 500; }
+        .contact-link svg { width: 24px; height: 24px; fill: white; }
 
-        .contact-link {
-            /* Inherits glass styles */
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 25px;
-            text-decoration: none;
-            color: white;
-            border-radius: 15px;
-        }
-        
-        .contact-link svg, .contact-link span.material-symbols-outlined {
-            width: 24px;
-            height: 24px;
-            fill: white;
-            color: white;
-        }
-
-        /* --- MOBILE --- */
-        .hamburger { display: none; }
-        
         @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .navbar {
-                padding: 15px;
-            }
-            .desktop-nav-menu {
-                display: none; /* Add JS for mobile menu if needed */
-            }
-            .hero-title {
-                font-size: 2.5rem;
-            }
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .desktop-nav-menu { display: none; }
+            .card-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <div class="ambient-light">
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
 
     <header class="header">
@@ -378,7 +260,6 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#experiences" class="nav-link">Experiences</a></li>
                 <li><a href="#certifications" class="nav-link">Certifications</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -386,15 +267,15 @@
     <main>
         <section id="home" class="hero">
             <div class="container hero-container">
-                <div class="hero-content">
-                    <div class="glass-panel" style="padding: 10px 20px; display: inline-block; margin-bottom: 20px; border-radius: 50px;">
-                        <span style="font-size: 0.9rem; font-weight: 500;">👋 Hello, I'm</span>
+                <div>
+                    <div class="glass-panel" style="padding: 8px 20px; display: inline-block; margin-bottom: 24px; border-radius: 50px;">
+                        <span style="font-size: 0.9rem; font-weight: 500; letter-spacing: 0.5px;">✨ PGDM Student & Finance Specialist</span>
                     </div>
                     <h1 class="hero-title">Srinivasan R</h1>
-                    <p class="hero-subtitle">PGDM Student & Financial Analyst</p>
+                    <p class="hero-subtitle">Merging Financial Analysis with Data Science. <br>Based in Madurai, India.</p>
                     <div class="hero-buttons">
-                        <a href="#experiences" class="btn btn-primary">View Work</a>
-                        <a href="https://srini-vasan-r10.github.io/portfolio/resume.html" class="btn btn-secondary">Resume</a>
+                        <a href="#experiences" class="btn btn-primary">My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -405,19 +286,21 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="card-grid">
                     <div class="glass-panel card">
-                        <h3>Future Professional</h3>
-                        <br>
-                        <p>A dedicated future-ready professional with a Bachelor's in Commerce and a strong analytical aptitude. Eager to dive deep into Finance and Analytics through the PGDM program at Thiagarajar School of Management.</p>
+                        <h3 class="card-title">Professional Profile</h3>
+                        <p class="card-subtitle">Finance & Analytics</p>
+                        <div class="card-body">
+                            <p>A dedicated professional with a Bachelor's in Commerce (Professional Accounting) and a strong analytical aptitude. Currently specializing in Finance and Analytics through the PGDM program at Thiagarajar School of Management.</p>
+                        </div>
                     </div>
-                    <div class="glass-panel card skills-card">
-                        <h3>Key Skills</h3>
-                        <br>
-                        <ul>
-                            <li><span class="material-symbols-outlined">check_circle</span>Financial & Management Accounting</li>
-                            <li><span class="material-symbols-outlined">check_circle</span>Auditing & Internal Audits</li>
-                            <li><span class="material-symbols-outlined">check_circle</span>Taxation, GST Filing & Tax Audits</li>
-                            <li><span class="material-symbols-outlined">check_circle</span>Tally ERP & SAP (FICO)</li>
-                            <li><span class="material-symbols-outlined">check_circle</span>Python & Data Analytics</li>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">Core Competencies</h3>
+                        <p class="card-subtitle">Skills & Tools</p>
+                        <ul class="skills-list">
+                            <li><span class="material-symbols-outlined">verified</span>Financial Accounting & Auditing</li>
+                            <li><span class="material-symbols-outlined">verified</span>Taxation, GST & E-Filing</li>
+                            <li><span class="material-symbols-outlined">verified</span>SAP (FICO) & Tally ERP</li>
+                            <li><span class="material-symbols-outlined">verified</span>Python & Data Analysis</li>
+                            <li><span class="material-symbols-outlined">verified</span>Advanced MS Office Suite</li>
                         </ul>
                     </div>
                 </div>
@@ -427,8 +310,7 @@
         <section id="experiences">
             <div class="container">
                 <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">Internships & Responsibilities</p>
-                
+                <p class="section-subtitle">Internships, Projects & Responsibilities</p>
                 <div class="card-grid">
                     <div class="glass-panel card">
                         <div class="card-header">
@@ -436,38 +318,36 @@
                             <p class="card-subtitle">Chinnasamy Ganesan & Co.</p>
                         </div>
                         <div class="card-body">
-                            <p>Executed internal audit at Surya Electronics. Conducted comprehensive inventory verification, reconciled billed/undispatched goods, and accounted for damaged stock.</p>
+                            <p>Conducted comprehensive inventory verification at Surya Electronics. Reconciled billed vs. dispatched goods and accounted for damaged stock. Prepared detailed audit reports for senior management.</p>
                         </div>
                         <div class="card-footer">
                             <span>Madurai</span>
                             <span>Aug 2024</span>
                         </div>
                     </div>
-
                     <div class="glass-panel card">
                         <div class="card-header">
-                            <h3 class="card-title">Intern</h3>
+                            <h3 class="card-title">Finance Intern</h3>
                             <p class="card-subtitle">CA C Govindaraj & Co.</p>
                         </div>
                         <div class="card-body">
-                            <p>Gained practical exposure to real-world accounting problems and learned the intricacies of the tax audit process, including preparing detailed tax audit reports.</p>
+                            <p>Gained exposure to real-world accounting discrepancies. Learned intricacies of the tax audit process and assisted in preparing comprehensive tax audit reports.</p>
                         </div>
                         <div class="card-footer">
                             <span>Madurai</span>
                             <span>Oct 2023</span>
                         </div>
                     </div>
-
                     <div class="glass-panel card">
                         <div class="card-header">
                             <h3 class="card-title">Website Content Head</h3>
                             <p class="card-subtitle">FOS 2026 – GRIE Conference</p>
                         </div>
                         <div class="card-body">
-                            <p>Leading the content strategy and development for the official website of "The International Conference on Frontiers of Sustainability".</p>
+                            <p>Leading content strategy for the official website of "The International Conference on Frontiers of Sustainability". Managing digital communication and layout.</p>
                         </div>
                         <div class="card-footer">
-                            <span>July 2025 - Present</span>
+                            <span>Present</span>
                         </div>
                     </div>
                 </div>
@@ -477,26 +357,68 @@
         <section id="certifications">
             <div class="container">
                 <h2 class="section-title">Certifications</h2>
+                <p class="section-subtitle">Continuous Learning & Development</p>
                 <div class="card-grid">
                     <div class="glass-panel card">
-                        <h3 class="card-title">Digital Marketing</h3>
+                        <h3 class="card-title">Digital Marketing & E-commerce</h3>
                         <p class="card-subtitle">Google (Coursera)</p>
                         <div class="card-footer">Jul 2025</div>
                     </div>
                     <div class="glass-panel card">
-                        <h3 class="card-title">Financial Analysis</h3>
+                        <h3 class="card-title">Attract & Engage Customers</h3>
+                        <p class="card-subtitle">Google (Coursera)</p>
+                        <div class="card-footer">Jul 2025</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">Financial Statement Analysis</h3>
                         <p class="card-subtitle">Univ. of Illinois</p>
                         <div class="card-footer">Jul 2025</div>
                     </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">Organisational Behaviour</h3>
+                        <p class="card-subtitle">Macquarie Univ.</p>
+                        <div class="card-footer">Jul 2025</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">English for Business</h3>
+                        <p class="card-subtitle">UC Irvine</p>
+                        <div class="card-footer">Jul 2025</div>
+                    </div>
+
                     <div class="glass-panel card">
                         <h3 class="card-title">SAP (FI-CO) Power User</h3>
                         <p class="card-subtitle">ICMAI</p>
                         <div class="card-footer">2023</div>
                     </div>
                     <div class="glass-panel card">
+                        <h3 class="card-title">e-Filing Training</h3>
+                        <p class="card-subtitle">ICMAI</p>
+                        <div class="card-footer">2023</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">MS Office Intermediate</h3>
+                        <p class="card-subtitle">Microsoft Academy</p>
+                        <div class="card-footer">2023</div>
+                    </div>
+                    <div class="glass-panel card">
                         <h3 class="card-title">Scientific Computing (Python)</h3>
                         <p class="card-subtitle">freeCodeCamp</p>
                         <div class="card-footer">Jan 2023</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">Artificial Intelligence & ML</h3>
+                        <p class="card-subtitle">Madura College</p>
+                        <div class="card-footer">Jan 2023</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">Responsive Web Design</h3>
+                        <p class="card-subtitle">freeCodeCamp</p>
+                        <div class="card-footer">Apr 2023</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">HTML Introduction</h3>
+                        <p class="card-subtitle">LearnTube</p>
+                        <div class="card-footer">May 2023</div>
                     </div>
                 </div>
             </div>
@@ -505,11 +427,14 @@
         <section id="contact">
             <div class="container">
                 <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Always open to new opportunities</p>
                 <div class="contact-links">
                     <a href="mailto:sv100204@gmail.com" class="glass-panel contact-link">
                         <span class="material-symbols-outlined">mail</span>
-                        <span>Email Me</span>
+                        <span>sv100204@gmail.com</span>
+                    </a>
+                    <a href="tel:+918903720129" class="glass-panel contact-link">
+                        <span class="material-symbols-outlined">call</span>
+                        <span>+91 89037 20129</span>
                     </a>
                     <a href="https://www.linkedin.com/in/rsv2004" target="_blank" class="glass-panel contact-link">
                         <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
