@@ -3,64 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srinivasan R - Liquid Glass Resume</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Srinivasan R | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
+        /* --- RESET & BASICS --- */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+            --accent: #38bdf8;
         }
 
-        /* --- Liquid Background Animation --- */
-        .liquid-bg {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a; /* Deep Slate Blue */
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- BACKGROUND ANIMATION (The Liquid) --- */
+        .ambient-light {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #f0f4f8;
-            z-index: -1;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
+            z-index: -1;
+            background: #0f172a;
         }
 
-        .orb {
+        .blob {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.8;
+            opacity: 0.6;
             animation: float 20s infinite ease-in-out alternate;
         }
 
-        .orb-1 {
-            top: -10%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, #60a5fa 0%, #3b82f6 100%);
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            bottom: -10%;
-            right: -10%;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, #818cf8 0%, #6366f1 100%);
-            animation-delay: -5s;
-        }
-
-        .orb-3 {
-            top: 40%;
-            left: 40%;
-            width: 40vw;
-            height: 40vw;
-            background: radial-gradient(circle, #2dd4bf 0%, #14b8a6 100%);
-            animation-delay: -10s;
-        }
+        .blob:nth-child(1) { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #4f46e5; animation-delay: 0s; }
+        .blob:nth-child(2) { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #ec4899; animation-delay: -5s; }
+        .blob:nth-child(3) { top: 40%; left: 30%; width: 40vw; height: 40vw; background: #06b6d4; animation-delay: -10s; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
@@ -68,240 +64,465 @@
             100% { transform: translate(-20px, 20px) scale(0.9); }
         }
 
-        /* --- Glassmorphism Utilities --- */
+        /* --- GLASS UTILITIES --- */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(255,255,255,0.4); /* Highlight top edge */
+            border-bottom: 1px solid rgba(255,255,255,0.05); /* Shadow bottom edge */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            background: var(--glass-highlight);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.4);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* --- NAVIGATION (Floating Dock Style) --- */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            border-radius: 50px; /* Pill shape */
+            width: 90%;
+            max-width: 1000px;
+            
+            /* Glass Effect for Navbar */
+            background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .glass-header {
-            background: rgba(30, 41, 59, 0.85); /* Dark Slate with transparency */
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .glass-pill {
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        .desktop-nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
         }
 
-        /* --- Print Overrides --- */
-        @media print {
-            .liquid-bg { display: none; }
-            body { background: white; }
-            .glass-panel {
-                background: white;
-                box-shadow: none;
-                border: none;
-                backdrop-filter: none;
-                border-radius: 0;
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0f172a;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #7dd3fc;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* --- SECTIONS & CARDS --- */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            /* Inherits .glass-panel styles via class in HTML */
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .card-body p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        /* Skills List */
+        .skills-card ul {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .skills-card li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+        }
+
+        .skills-card .material-symbols-outlined {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* --- CONTACT --- */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            /* Inherits glass styles */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .contact-link svg, .contact-link span.material-symbols-outlined {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            color: white;
+        }
+
+        /* --- MOBILE --- */
+        .hamburger { display: none; }
+        
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            .glass-header {
-                background: #1e293b !important; /* Force solid slate */
-                color: white !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+            .hero-buttons {
+                justify-content: center;
             }
-            .glass-pill {
-                border: 1px solid #e2e8f0;
-                background: #f1f5f9;
+            .navbar {
+                padding: 15px;
             }
-            a { text-decoration: none; color: black; }
+            .desktop-nav-menu {
+                display: none; /* Add JS for mobile menu if needed */
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
-<body class="p-4 sm:p-8 min-h-screen">
+<body>
 
-    <div class="liquid-bg">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+    <div class="ambient-light">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
     </div>
 
-    <div class="max-w-4xl mx-auto glass-panel rounded-3xl overflow-hidden relative z-10">
-        
-        <header class="glass-header text-white p-8 sm:p-10">
-            <div class="flex flex-col sm:flex-row justify-between items-start">
-                <div>
-                    <h1 class="text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-sky-200 drop-shadow-sm">Srinivasan R</h1>
-                    <p class="text-xl text-sky-200 font-light mt-2 tracking-wide">Management Trainee | Finance & Marketing</p>
-                </div>
-                
-                <div class="mt-6 sm:mt-0 sm:text-right text-sm font-light text-slate-200">
-                    <div class="flex items-center justify-start sm:justify-end gap-3 mb-2 transition hover:text-white">
-                        <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        <span>Jaihindpuram, Madurai - 625011</span>
+    <header class="header">
+        <nav class="navbar">
+            <a href="#home" class="nav-logo">Srinivasan R.</a>
+            <ul class="desktop-nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experiences" class="nav-link">Experiences</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="glass-panel" style="padding: 10px 20px; display: inline-block; margin-bottom: 20px; border-radius: 50px;">
+                        <span style="font-size: 0.9rem; font-weight: 500;">👋 Hello, I'm</span>
                     </div>
-                    <div class="flex items-center justify-start sm:justify-end gap-3 mb-2 group">
-                        <svg class="w-4 h-4 text-sky-400 group-hover:text-sky-200 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                        <a href="tel:+918903720129" class="hover:text-sky-200 transition">+91 8903720129</a>
-                    </div>
-                    <div class="flex items-center justify-start sm:justify-end gap-3 group">
-                        <svg class="w-4 h-4 text-sky-400 group-hover:text-sky-200 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        <a href="mailto:sv100204@gmail.com" class="hover:text-sky-200 transition">sv100204@gmail.com</a>
+                    <h1 class="hero-title">Srinivasan R</h1>
+                    <p class="hero-subtitle">PGDM Student & Financial Analyst</p>
+                    <div class="hero-buttons">
+                        <a href="#experiences" class="btn btn-primary">View Work</a>
+                        <a href="https://srini-vasan-r10.github.io/portfolio/resume.html" class="btn btn-secondary">Resume</a>
                     </div>
                 </div>
             </div>
-            
-            <div class="mt-8 flex flex-wrap justify-start sm:justify-end gap-4 text-sm">
-                <a href="https://linkedin.com/in/rsv2004" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition backdrop-blur-sm">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/srini-vasan-r10" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition backdrop-blur-sm">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.218.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.82c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .266.18.577.688.48A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
-                    <span>GitHub</span>
-                </a>
-            </div>
-        </header>
+        </section>
 
-        <div class="flex flex-col md:flex-row">
-            <aside class="w-full md:w-1/3 bg-white/30 backdrop-blur-sm p-8 border-r border-white/40">
-                <div class="space-y-8">
-                    <section>
-                        <h2 class="text-lg font-bold text-slate-800 uppercase tracking-widest mb-4 pb-2 border-b-2 border-sky-500/50">Skills</h2>
-                        <div>
-                            <h3 class="font-semibold text-slate-700 mb-3 text-sm">Technical</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="glass-pill text-sky-800 text-xs font-semibold px-3 py-1 rounded-full">MS Excel</span>
-                                <span class="glass-pill text-sky-800 text-xs font-semibold px-3 py-1 rounded-full">Python</span>
-                                <span class="glass-pill text-sky-800 text-xs font-semibold px-3 py-1 rounded-full">MS Office</span>
-                                <span class="glass-pill text-sky-800 text-xs font-semibold px-3 py-1 rounded-full">HTML</span>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="font-semibold text-slate-700 mb-3 text-sm">Functional</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="glass-pill text-teal-800 text-xs font-semibold px-3 py-1 rounded-full">Financial Accounting</span>
-                                <span class="glass-pill text-teal-800 text-xs font-semibold px-3 py-1 rounded-full">Auditing</span>
-                                <span class="glass-pill text-teal-800 text-xs font-semibold px-3 py-1 rounded-full">Taxation</span>
-                                <span class="glass-pill text-teal-800 text-xs font-semibold px-3 py-1 rounded-full">GST Filing</span>
-                                <span class="glass-pill text-teal-800 text-xs font-semibold px-3 py-1 rounded-full">Report Writing</span>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="font-semibold text-slate-700 mb-3 text-sm">Management</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="glass-pill text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Digital Marketing</span>
-                                <span class="glass-pill text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Org. Behaviour</span>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <section>
-                        <h2 class="text-lg font-bold text-slate-800 uppercase tracking-widest mb-4 pb-2 border-b-2 border-sky-500/50">Certifications</h2>
-                        <div class="space-y-3">
-                            <div class="glass-card p-3">
-                                <div class="text-sm font-bold text-slate-800">SAP (FI-CO)</div>
-                                <div class="text-xs text-slate-600">ICMAI</div>
-                            </div>
-                            <div class="glass-card p-3">
-                                <div class="text-sm font-bold text-slate-800">Digital Marketing</div>
-                                <div class="text-xs text-slate-600">Google</div>
-                            </div>
-                            <div class="glass-card p-3">
-                                <div class="text-sm font-bold text-slate-800">Financial Analysis</div>
-                                <div class="text-xs text-slate-600">U of I</div>
-                            </div>
-                             <div class="glass-card p-3">
-                                <div class="text-sm font-bold text-slate-800">Org. Behaviour</div>
-                                <div class="text-xs text-slate-600">Macquarie University</div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section>
-                        <h2 class="text-lg font-bold text-slate-800 uppercase tracking-widest mb-4 pb-2 border-b-2 border-sky-500/50">Languages</h2>
-                        <ul class="space-y-2 text-sm text-slate-700 font-medium">
-                            <li class="flex justify-between border-b border-slate-300/30 pb-1"><span>Tamil</span> <span class="text-slate-500 font-normal">Native</span></li>
-                            <li class="flex justify-between border-b border-slate-300/30 pb-1"><span>English</span> <span class="text-slate-500 font-normal">High Prof.</span></li>
-                            <li class="flex justify-between border-b border-slate-300/30 pb-1"><span>Malayalam</span> <span class="text-slate-500 font-normal">Conv.</span></li>
-                            <li class="flex justify-between border-b border-slate-300/30 pb-1"><span>Hindi</span> <span class="text-slate-500 font-normal">Prof.</span></li>
-                            <li class="flex justify-between pb-1"><span>Sanskrit</span> <span class="text-slate-500 font-normal">Elem.</span></li>
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="card-grid">
+                    <div class="glass-panel card">
+                        <h3>Future Professional</h3>
+                        <br>
+                        <p>A dedicated future-ready professional with a Bachelor's in Commerce and a strong analytical aptitude. Eager to dive deep into Finance and Analytics through the PGDM program at Thiagarajar School of Management.</p>
+                    </div>
+                    <div class="glass-panel card skills-card">
+                        <h3>Key Skills</h3>
+                        <br>
+                        <ul>
+                            <li><span class="material-symbols-outlined">check_circle</span>Financial & Management Accounting</li>
+                            <li><span class="material-symbols-outlined">check_circle</span>Auditing & Internal Audits</li>
+                            <li><span class="material-symbols-outlined">check_circle</span>Taxation, GST Filing & Tax Audits</li>
+                            <li><span class="material-symbols-outlined">check_circle</span>Tally ERP & SAP (FICO)</li>
+                            <li><span class="material-symbols-outlined">check_circle</span>Python & Data Analytics</li>
                         </ul>
-                    </section>
+                    </div>
                 </div>
-            </aside>
+            </div>
+        </section>
 
-            <main class="w-full md:w-2/3 p-8">
-                <div class="space-y-8">
-                    <section>
-                        <h2 class="text-lg font-bold text-slate-800 uppercase tracking-widest mb-4 pb-2 border-b-2 border-sky-500/50">Professional Summary</h2>
-                        <div class="glass-card p-5 shadow-sm">
-                            <p class="text-slate-700 leading-relaxed font-medium">Results-oriented Management Trainee specializing in finance and accounting, currently pursuing a PGDM. Formally trained and certified in SAP FICO, with proficiency in financial analysis and reporting. Brings hands-on internship experience in internal audits and taxation, with a proven ability to analyze financial data and improve processes.</p>
+        <section id="experiences">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">Internships & Responsibilities</p>
+                
+                <div class="card-grid">
+                    <div class="glass-panel card">
+                        <div class="card-header">
+                            <h3 class="card-title">Internal Audit Assistant</h3>
+                            <p class="card-subtitle">Chinnasamy Ganesan & Co.</p>
                         </div>
-                    </section>
+                        <div class="card-body">
+                            <p>Executed internal audit at Surya Electronics. Conducted comprehensive inventory verification, reconciled billed/undispatched goods, and accounted for damaged stock.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Madurai</span>
+                            <span>Aug 2024</span>
+                        </div>
+                    </div>
 
-                    <section>
-                        <h2 class="text-lg font-bold text-slate-800 uppercase tracking-widest mb-6 pb-2 border-b-2 border-sky-500/50">Professional Experience</h2>
-                        <div class="space-y-6">
-                            <div class="relative pl-4 border-l-2 border-sky-300">
-                                <div class="flex flex-col sm:flex-row justify-between items-baseline mb-1">
-                                    <h3 class="text-xl font-bold text-slate-800">Internal Audit Assistant</h3>
-                                    <span class="text-xs font-bold text-sky-700 bg-sky-100/50 px-2 py-1 rounded uppercase tracking-wide">Aug 2024</span>
-                                </div>
-                                <p class="text-slate-600 font-semibold mb-2">Chinnasamy Ganesan & Co.</p>
-                                <ul class="list-disc list-inside text-slate-700 space-y-2 text-sm leading-relaxed">
-                                    <li>Executed internal audit at a major electronics warehouse, performing comprehensive inventory verification.</li>
-                                    <li>Identified and reconciled discrepancies between billed and dispatched goods and accounted for damaged stock.</li>
-                                    <li>Prepared detailed audit report summarizing findings for senior auditors.</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="relative pl-4 border-l-2 border-sky-300">
-                                <div class="flex flex-col sm:flex-row justify-between items-baseline mb-1">
-                                    <h3 class="text-xl font-bold text-slate-800">Intern</h3>
-                                    <span class="text-xs font-bold text-sky-700 bg-sky-100/50 px-2 py-1 rounded uppercase tracking-wide">Oct 2023</span>
-                                </div>
-                                <p class="text-slate-600 font-semibold mb-2">CA C Govindaraj & Co, Chartered Accountants</p>
-                                <ul class="list-disc list-inside text-slate-700 space-y-2 text-sm leading-relaxed">
-                                    <li>Assisted in preparing comprehensive tax audit reports for multiple clients, ensuring accuracy and compliance.</li>
-                                    <li>Analyzed financial statements and verified data to identify and reconcile discrepancies.</li>
-                                </ul>
-                            </div>
+                    <div class="glass-panel card">
+                        <div class="card-header">
+                            <h3 class="card-title">Intern</h3>
+                            <p class="card-subtitle">CA C Govindaraj & Co.</p>
                         </div>
-                    </section>
+                        <div class="card-body">
+                            <p>Gained practical exposure to real-world accounting problems and learned the intricacies of the tax audit process, including preparing detailed tax audit reports.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Madurai</span>
+                            <span>Oct 2023</span>
+                        </div>
+                    </div>
 
-                    <section>
-                        <h2 class="text-lg font-bold text-slate-800 uppercase tracking-widest mb-6 pb-2 border-b-2 border-sky-500/50">Education</h2>
-                        <div class="grid gap-4">
-                            <div class="glass-card p-5 hover:bg-white/50 transition duration-300">
-                                <h3 class="text-lg font-bold text-slate-800">PGDM</h3>
-                                <p class="text-sky-700 font-medium">Thiagarajar School of Management, Madurai</p>
-                                <p class="text-sm text-slate-500 mt-1">2025 - 2027 (Expected)</p>
-                            </div>
-                            <div class="glass-card p-5 hover:bg-white/50 transition duration-300">
-                                <h3 class="text-lg font-bold text-slate-800">CMA Intermediate</h3>
-                                <p class="text-sky-700 font-medium">Institute of Cost Accountants of India</p>
-                                <p class="text-sm text-slate-500 mt-1">Jan 2024 - Present</p>
-                            </div>
-                            <div class="glass-card p-5 hover:bg-white/50 transition duration-300">
-                                <h3 class="text-lg font-bold text-slate-800">B.Com (Professional Accounting)</h3>
-                                <p class="text-sky-700 font-medium">The Madura College, Madurai</p>
-                                <p class="text-sm text-slate-500 mt-1">2021 - 2024 <span class="ml-2 text-slate-400">|</span> <span class="ml-2">CGPA: 7.4</span></p>
-                            </div>
+                    <div class="glass-panel card">
+                        <div class="card-header">
+                            <h3 class="card-title">Website Content Head</h3>
+                            <p class="card-subtitle">FOS 2026 – GRIE Conference</p>
                         </div>
-                    </section>
-                    
-                     <section>
-                        <h2 class="text-lg font-bold text-slate-800 uppercase tracking-widest mb-4 pb-2 border-b-2 border-sky-500/50">Projects & Leadership</h2>
-                        <div class="glass-card p-5 border-l-4 border-l-purple-400">
-                            <div class="flex justify-between items-baseline mb-2">
-                                <h3 class="text-lg font-bold text-slate-800">Website Content Team Head</h3>
-                                <p class="text-xs font-semibold text-purple-700 bg-purple-100/50 px-2 py-1 rounded">July 2025 - Present</p>
-                            </div>
-                             <p class="font-semibold text-slate-600 mb-2">FOS 2026 – GRIE Conference</p>
-                            <ul class="list-disc list-inside text-slate-700 text-sm">
-              
+                        <div class="card-body">
+                            <p>Leading the content strategy and development for the official website of "The International Conference on Frontiers of Sustainability".</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>July 2025 - Present</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <div class="container">
+                <h2 class="section-title">Certifications</h2>
+                <div class="card-grid">
+                    <div class="glass-panel card">
+                        <h3 class="card-title">Digital Marketing</h3>
+                        <p class="card-subtitle">Google (Coursera)</p>
+                        <div class="card-footer">Jul 2025</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">Financial Analysis</h3>
+                        <p class="card-subtitle">Univ. of Illinois</p>
+                        <div class="card-footer">Jul 2025</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">SAP (FI-CO) Power User</h3>
+                        <p class="card-subtitle">ICMAI</p>
+                        <div class="card-footer">2023</div>
+                    </div>
+                    <div class="glass-panel card">
+                        <h3 class="card-title">Scientific Computing (Python)</h3>
+                        <p class="card-subtitle">freeCodeCamp</p>
+                        <div class="card-footer">Jan 2023</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Always open to new opportunities</p>
+                <div class="contact-links">
+                    <a href="mailto:sv100204@gmail.com" class="glass-panel contact-link">
+                        <span class="material-symbols-outlined">mail</span>
+                        <span>Email Me</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/rsv2004" target="_blank" class="glass-panel contact-link">
+                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/srini-vasan-r10" target="_blank" class="glass-panel contact-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
