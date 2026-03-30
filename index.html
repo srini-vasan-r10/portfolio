@@ -1,777 +1,342 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     
-
     <title>Srinivasan R | Management Trainee - Marketing, Operations & Analytics</title>
-
-    <meta name="description" content="Official portfolio of Srinivasan R, PGDM student at TSM Madurai. Expert in FMCG Field Marketing, Business Analytics (Python/SQL), and Operational Excellence.">
-
-    <meta name="keywords" content="Srinivasan R, TSM Madurai, PGDM Marketing, Business Analytics, FMCG Sales Madurai, Cavinkare Ruchi Challenge, Wipro Ramnad Sales, Python for Finance, SQL for Marketing, Management Trainee Tamil Nadu">
-
+    <meta name="description" content="Professional portfolio of Srinivasan R, PGDM student at TSM Madurai. Expert in FMCG Field Marketing, Business Analytics, and Operational Excellence.">
+    <meta name="keywords" content="Srinivasan R, TSM Madurai, PGDM Marketing, Business Analytics, FMCG Sales Madurai, Cavinkare Ruchi Challenge, Wipro Ramnad Sales, Python, SQL">
     
-
     <link rel="icon" type="image/jpg" href="profile-photo.jpg">
 
-
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-
     <style>
-
         :root {
-
-            --primary: #0f172a;
-
+            --primary: #020617;
             --accent: #2563eb;
-
-            --bg-soft: #f8fafc;
-
-            --glass: rgba(255, 255, 255, 0.8);
-
+            --slate-muted: #64748b;
+            --glass: rgba(255, 255, 255, 0.9);
         }
 
-
-        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--primary); background: white; overflow-x: hidden; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--primary); background: #ffffff; scroll-behavior: smooth; overflow-x: hidden; }
         
-
-        /* --- ANIMATION CLASSES --- */
-
+        /* --- ANIMATIONS --- */
         .typewriter::after { content: '|'; animation: blink 1s infinite; color: var(--accent); }
-
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .reveal-up { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
-
-        .reveal-up.active { opacity: 1; transform: translateY(0); }
-
-
-        /* --- LAYOUT COMPONENTS --- */
-
-        .glass-nav { background: var(--glass); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-
+        /* --- UI COMPONENTS --- */
+        .nav-blur { background: var(--glass); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .card-hover { transition: all 0.4s ease; border: 1px solid #f1f5f9; }
+        .card-hover:hover { transform: translateY(-10px); border-color: var(--accent); shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
         
-
-        .bento-grid {
-
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            grid-template-rows: repeat(2, 300px);
-
-            gap: 1.5rem;
-
-        }
-
-
-        .bento-item { border-radius: 2rem; padding: 2rem; border: 1px solid #e2e8f0; transition: all 0.4s ease; background: white; }
-
-        .bento-item:hover { border-color: var(--accent); box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.1); transform: scale(1.02); }
-
-
-        .timeline-line { position: absolute; left: 50%; width: 2px; height: 100%; background: #e2e8f0; transform: translateX(-50%); }
-
-        
+        .timeline-border { border-left: 2px solid #e2e8f0; position: relative; padding-left: 2rem; }
+        .timeline-marker { position: absolute; left: -0.6rem; top: 0; width: 1rem; height: 1rem; background: white; border: 3px solid var(--accent); border-radius: 50%; }
 
         /* Custom Scrollbar */
-
-        ::-webkit-scrollbar { width: 10px; }
-
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
-
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
-
 </head>
-
 <body>
 
-
-    <nav class="fixed top-0 w-full z-[1000] glass-nav h-20">
-
-        <div class="container mx-auto px-6 h-full flex justify-between items-center">
-
+    <nav class="fixed top-0 w-full z-[1000] nav-blur h-24">
+        <div class="container mx-auto px-8 h-full flex justify-between items-center">
             <div class="flex items-center gap-4">
-
-                <img src="profile-photo.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md">
-
-                <span class="font-extrabold text-xl tracking-tighter uppercase">Srinivasan <span class="text-blue-600">R.</span></span>
-
+                <img src="profile-photo.jpg" alt="Srinivasan R" class="w-12 h-12 rounded-full object-cover shadow-sm">
+                <div>
+                    <span class="block font-extrabold text-xl tracking-tighter leading-none uppercase">Srinivasan R.</span>
+                    <span class="text-[9px] font-bold text-blue-600 uppercase tracking-widest">Management Trainee</span>
+                </div>
             </div>
-
-            <div class="hidden xl:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
-
-                <a href="#hero" class="hover:text-blue-600">Home</a>
-
-                <a href="#about" class="hover:text-blue-600">Identity</a>
-
-                <a href="#work" class="hover:text-blue-600">Fieldwork</a>
-
-                <a href="#skills" class="hover:text-blue-600">Toolkit</a>
-
-                <a href="#academics" class="hover:text-blue-600">Academics</a>
-
-                <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-200">Contact</a>
-
+            <div class="hidden xl:flex items-center gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="#home" class="hover:text-blue-600 transition">Home</a>
+                <a href="#work" class="hover:text-blue-600 transition">Fieldwork</a>
+                <a href="#skills" class="hover:text-blue-600 transition">Toolkit</a>
+                <a href="#academics" class="hover:text-blue-600 transition">Academics</a>
+                <a href="#certs" class="hover:text-blue-600 transition">Certs</a>
+                <a href="mailto:sv100204@gmail.com" class="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-100">Contact</a>
             </div>
-
         </div>
-
     </nav>
 
-
-    <section id="hero" class="min-h-screen pt-32 flex items-center bg-slate-50 overflow-hidden">
-
-        <div class="container mx-auto px-6 relative">
-
-            <div class="absolute -top-24 -left-24 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
-
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
-
-                <div class="lg:col-span-7 space-y-8 relative z-10">
-
-                    <div class="inline-flex items-center gap-3 px-5 py-2 bg-white border border-slate-200 rounded-full shadow-sm">
-
-                        <span class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
-
-                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">PGDM Intern @ TSM Madurai [cite: 2]</span>
-
-                    </div>
-
-                    <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-none">
-
-                        Driven by <br> <span class="text-blue-600" id="typewriter"></span>
-
-                    </h1>
-
-                    <p class="text-xl text-slate-600 font-light leading-relaxed max-w-2xl">
-
-                        A Management Trainee bridging the gap between <span class="font-bold text-slate-900">Financial Rigor</span> and <span class="font-bold text-slate-900">Marketing Agility</span>[cite: 2, 4]. Experienced in high-stakes FMCG penetration and data-driven field insights[cite: 4, 83].
-
-                    </p>
-
-                    <div class="flex flex-wrap gap-5">
-
-                        <a href="#work" class="bg-slate-900 text-white px-10 py-5 rounded-3xl font-bold hover:scale-105 transition shadow-2xl">View Portfolio</a>
-
-                        <div class="flex items-center gap-4 px-6 border-l-2 border-slate-200">
-
-                            <a href="https://github.com/srini-vasan-r10" class="text-slate-400 hover:text-slate-900 transition"><i data-lucide="github"></i></a>
-
-                            <a href="https://linkedin.com/in/rsv2004" class="text-slate-400 hover:text-blue-600 transition"><i data-lucide="linkedin"></i></a>
-
-                        </div>
-
-                    </div>
-
+    <section id="home" class="min-h-screen flex items-center pt-24 bg-slate-50/50">
+        <div class="container mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-10">
+                <div class="inline-flex items-center gap-2 px-5 py-2 bg-white border border-slate-200 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">TSM Madurai | PGDM 2025-27</span>
                 </div>
-
-                <div class="lg:col-span-5 relative">
-
-                    <div class="relative w-full aspect-square rounded-[3rem] overflow-hidden border-[16px] border-white shadow-2xl rotate-2">
-
-                        <img src="profile-photo.jpg" class="w-full h-full object-cover">
-
+                <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter leading-[0.9]">
+                    Strategy <br> Meets <span class="text-blue-600" id="type-target"></span>
+                </h1>
+                <p class="text-xl text-slate-500 font-light leading-relaxed max-w-xl">
+                    Bridging the gap between <span class="text-slate-900 font-semibold">Consumer Behavioral Insights</span> and <span class="text-slate-900 font-semibold">Operational Data Analytics</span>. Specializing in high-intensity FMCG market penetration.
+                </p>
+                <div class="flex flex-wrap gap-6 items-center">
+                    <a href="#work" class="bg-slate-900 text-white px-12 py-5 rounded-2xl font-bold hover:scale-105 transition shadow-2xl">Explore Portfolio</a>
+                    <div class="flex gap-6 border-l border-slate-200 pl-8">
+                        <a href="https://linkedin.com/in/rsv2004" class="text-slate-400 hover:text-blue-600 transition"><i data-lucide="linkedin"></i></a>
+                        <a href="https://github.com/srini-vasan-r10" class="text-slate-400 hover:text-slate-900 transition"><i data-lucide="github"></i></a>
                     </div>
-
-                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex items-center gap-4">
-
-                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600"><i data-lucide="trending-up"></i></div>
-
-                        <div>
-
-                            <p class="text-xs font-black text-slate-400 uppercase tracking-widest">Market Impact</p>
-
-                            <p class="text-lg font-bold">100+ Customers/Day [cite: 12, 52]</p>
-
-                        </div>
-
-                    </div>
-
                 </div>
-
             </div>
-
+            <div class="relative">
+                <div class="relative z-10 w-full aspect-square rounded-[3rem] overflow-hidden border-[16px] border-white shadow-2xl rotate-2">
+                    <img src="profile-photo.jpg" alt="Srinivasan R Portrait" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-8 -left-8 bg-blue-600 text-white p-8 rounded-3xl shadow-2xl z-20">
+                    <p class="text-[10px] font-black uppercase tracking-widest opacity-70">2026 Focus</p>
+                    <p class="text-2xl font-bold mt-1 leading-tight text-white">Market <br> Penetration</p>
+                </div>
+            </div>
         </div>
-
     </section>
 
-
-    <section id="about" class="py-32 container mx-auto px-6">
-
-        <div class="max-w-4xl mx-auto text-center space-y-12">
-
-            <h2 class="text-sm font-black uppercase tracking-[0.4em] text-blue-600">Identity</h2>
-
-            <p class="text-3xl md:text-5xl font-light text-slate-900 leading-tight">
-
-                "I translate <span class="font-bold underline decoration-blue-500">point-of-sale patterns</span> into <span class="font-bold underline decoration-blue-500">operational strategies</span>." [cite: 4, 17, 83]
-
-            </p>
-
-            <div class="grid md:grid-cols-3 gap-8 pt-10">
-
-                <div class="p-10 bg-slate-50 rounded-[2.5rem] space-y-4 text-left">
-
-                    <i data-lucide="target" class="w-10 h-10 text-blue-600"></i>
-
-                    <h3 class="font-bold text-xl">Marketing</h3>
-
-                    <p class="text-sm text-slate-500">Focus on STP (Segmentation, Targeting, Positioning) and consumer buying psychology[cite: 21, 24].</p>
-
-                </div>
-
-                <div class="p-10 bg-slate-50 rounded-[2.5rem] space-y-4 text-left">
-
-                    <i data-lucide="cpu" class="w-10 h-10 text-blue-600"></i>
-
-                    <h3 class="font-bold text-xl">Analytics</h3>
-
-                    <p class="text-sm text-slate-500">Applying Python and SQL to resolve complex supply chain and consumer data gaps[cite: 86, 114].</p>
-
-                </div>
-
-                <div class="p-10 bg-slate-50 rounded-[2.5rem] space-y-4 text-left">
-
-                    <i data-lucide="layers" class="w-10 h-10 text-blue-600"></i>
-
-                    <h3 class="font-bold text-xl">Operations</h3>
-
-                    <p class="text-sm text-slate-500">Expertise in SKU monitoring, inventory replenishment, and planogram compliance[cite: 49, 54, 55].</p>
-
-                </div>
-
-            </div>
-
+    <section id="work" class="py-40 container mx-auto px-8">
+        <div class="max-w-4xl mb-24 reveal">
+            <h2 class="text-xs font-black uppercase tracking-[0.4em] text-blue-600 mb-4">Fieldwork & Experience</h2>
+            <h3 class="text-5xl font-extrabold tracking-tight">Market Successes & <span class="text-slate-400 italic">Field Leadership</span></h3>
         </div>
 
-    </section>
-
-
-    <section id="work" class="py-32 bg-slate-950 text-white">
-
-        <div class="container mx-auto px-6">
-
-            <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-24">
-
-                <div class="space-y-4">
-
-                    <h2 class="text-sm font-black uppercase tracking-[0.4em] text-blue-400">Fieldwork Log</h2>
-
-                    <h3 class="text-5xl font-extrabold tracking-tighter">Market Penetration & Sales [cite: 8, 50, 87]</h3>
-
+        <div class="space-y-16">
+            <div class="reveal p-12 rounded-[3rem] bg-slate-50 border border-slate-100 card-hover">
+                <div class="grid lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-4">
+                        <span class="text-[10px] font-black text-blue-600 bg-blue-50 px-4 py-2 rounded-lg">MAR – APR 2026</span>
+                        <h4 class="text-3xl font-extrabold mt-6 leading-tight">Cavinkare Ruchi Penetration Challenge</h4>
+                        <p class="text-slate-400 font-bold text-xs mt-2 uppercase tracking-widest">Madurai, TN</p>
+                    </div>
+                    <div class="lg:col-span-8 space-y-6">
+                        <p class="text-lg text-slate-700 font-medium">Leading a strategic drive for Ruchi 5Rs. Pickle Sachets penetration:</p>
+                        <ul class="space-y-4 text-slate-500 text-sm">
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Focused on increasing retail footprint and brand visibility in competitive grocery clusters.</li>
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Mapping consumer trial patterns to optimize secondary sales velocity.</li>
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Implementing point-of-sale promotional strategies to drive product trial and adoption.</li>
+                        </ul>
+                    </div>
                 </div>
-
-                <p class="text-slate-400 max-w-md">Real-world execution of FMCG strategies across Tamil Nadu markets[cite: 9, 51, 88].</p>
-
             </div>
 
+            <div class="reveal p-12 rounded-[3rem] bg-slate-50 border border-slate-100 card-hover">
+                <div class="grid lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-4">
+                        <span class="text-[10px] font-black text-blue-600 bg-blue-50 px-4 py-2 rounded-lg">JAN 2026</span>
+                        <h4 class="text-3xl font-extrabold mt-6 leading-tight">Wipro FMCG Direct Sales Execution</h4>
+                        <p class="text-slate-400 font-bold text-xs mt-2 uppercase tracking-widest">Ramnad Market</p>
+                    </div>
+                    <div class="lg:col-span-8 space-y-6">
+                        <p class="text-lg text-slate-700 font-medium">Field Promotion & Sales Management for Santoor, Yardley, and Softouch:</p>
+                        <ul class="space-y-4 text-slate-500 text-sm">
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Engaged 100+ daily customers through need-based selling and value-prop communication.</li>
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Tracked daily footfall-to-conversion rates and reported SKU movement to supervisors.</li>
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Monitored planogram compliance and shelf availability during peak Big Day Sale hours.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-            <div class="space-y-12">
+            <div class="reveal p-12 rounded-[3rem] bg-slate-50 border border-slate-100 card-hover">
+                <div class="grid lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-4">
+                        <span class="text-[10px] font-black text-blue-600 bg-blue-50 px-4 py-2 rounded-lg">AUG 2024</span>
+                        <h4 class="text-3xl font-extrabold mt-6 leading-tight">Internal Audit Assistant (Trainee)</h4>
+                        <p class="text-slate-400 font-bold text-xs mt-2 uppercase tracking-widest">Chinnasamy Ganesan & Co.</p>
+                    </div>
+                    <div class="lg:col-span-8 space-y-6">
+                        <p class="text-lg text-slate-700 font-medium">Operational Audit & Inventory Verification:</p>
+                        <ul class="space-y-4 text-slate-500 text-sm">
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Performed comprehensive physical stock verification at Surya Electronics warehouse.</li>
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Reconciled billed but dispatched goods and prepared detailed discrepancy reports.</li>
+                            <li class="flex gap-4"><i data-lucide="arrow-right-circle" class="text-blue-600 w-5 h-5 flex-shrink-0"></i> Assisted in tax audit report preparation and financial statement verification.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="reveal-up group relative overflow-hidden bg-white/5 border border-white/10 p-12 rounded-[3rem] hover:bg-white/10 transition duration-500">
+    <section id="academics" class="py-40 bg-slate-900 text-white">
+        <div class="container mx-auto px-8">
+            <div class="max-w-4xl mb-24 reveal">
+                <h2 class="text-xs font-black uppercase tracking-[0.4em] text-blue-400 mb-4">Academic Architecture</h2>
+                <h3 class="text-5xl font-extrabold tracking-tight">Educational <span class="italic text-slate-500">Excellence</span></h3>
+            </div>
 
-                    <div class="grid lg:grid-cols-12 gap-12">
-
-                        <div class="lg:col-span-4">
-
-                            <span class="mono text-blue-400 font-bold tracking-widest text-sm uppercase">Mar – Apr 2026</span>
-
-                            <h4 class="text-3xl font-bold mt-4">Cavinkare Ruchi Challenge</h4>
-
-                            <p class="text-slate-400 mt-2 font-medium">Market Penetration Drive | Madurai</p>
-
-                        </div>
-
-                        <div class="lg:col-span-8">
-
-                            <ul class="space-y-6">
-
-                                <li class="flex items-start gap-4">
-
-                                    <div class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0 mt-1"></div>
-
-                                    <p class="text-lg text-slate-300">Spearheaded retail penetration for <span class="text-white font-bold">Ruchi 5Rs. Pickle Sachets</span> across high-density Madurai grocery clusters.</p>
-
-                                </li>
-
-                                <li class="flex items-start gap-4">
-
-                                    <div class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0 mt-1"></div>
-
-                                    <p class="text-lg text-slate-300">Analyzed competitor shelf space and implemented point-of-sale visibility strategies to boost consumer trial rates.</p>
-
-                                </li>
-
-                                <li class="flex items-start gap-4">
-
-                                    <div class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0 mt-1"></div>
-
-                                    <p class="text-lg text-slate-300">Collaborated with retail stakeholders to increase secondary sales velocity during seasonal peaks.</p>
-
-                                </li>
-
+            <div class="space-y-24">
+                <div class="reveal grid md:grid-cols-2 gap-16">
+                    <div class="timeline-border">
+                        <div class="timeline-marker"></div>
+                        <span class="text-[10px] font-black uppercase text-blue-400 tracking-widest">2025 – Present</span>
+                        <h4 class="text-3xl font-bold mt-4 leading-tight">Post Graduate Diploma in Management (PGDM)</h4>
+                        <p class="text-slate-400 mt-2 italic text-sm">Thiagarajar School of Management, Madurai</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 bg-white/5 p-10 rounded-3xl border border-white/10">
+                        <div class="space-y-4">
+                            <p class="text-[10px] font-black uppercase text-slate-500">Core Marketing</p>
+                            <ul class="text-[11px] text-slate-400 space-y-2">
+                                <li>• Consumer Behavior</li>
+                                <li>• Marketing Research</li>
+                                <li>• Integrated Communications</li>
+                                <li>• Digital Marketing Strategy</li>
                             </ul>
-
                         </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="reveal-up group relative overflow-hidden bg-white/5 border border-white/10 p-12 rounded-[3rem] hover:bg-white/10 transition duration-500">
-
-                    <div class="grid lg:grid-cols-12 gap-12">
-
-                        <div class="lg:col-span-4">
-
-                            <span class="mono text-blue-400 font-bold tracking-widest text-sm uppercase">Jan 2026</span>
-
-                            <h4 class="text-3xl font-bold mt-4">Wipro Direct Sales</h4>
-
-                            <p class="text-slate-400 mt-2 font-medium">Territory: Ramnad Market [cite: 10, 51, 89]</p>
-
-                        </div>
-
-                        <div class="lg:col-span-8">
-
-                            <ul class="space-y-6">
-
-                                <li class="flex items-start gap-4 text-slate-300">
-
-                                    <i data-lucide="chevron-right" class="text-blue-400 mt-1"></i>
-
-                                    <p>Managed frontline sales operations for <span class="text-white font-bold">Santoor, Yardley, and Softouch</span> during a high-footfall campaign[cite: 11, 53, 95].</p>
-
-                                </li>
-
-                                <li class="flex items-start gap-4 text-slate-300">
-
-                                    <i data-lucide="chevron-right" class="text-blue-400 mt-1"></i>
-
-                                    <p>Documented customer objections and product preferences to support post-campaign analytics[cite: 15, 57, 93].</p>
-
-                                </li>
-
-                                <li class="flex items-start gap-4 text-slate-300">
-
-                                    <i data-lucide="chevron-right" class="text-blue-400 mt-1"></i>
-
-                                    <p>Identified impulse purchase triggers by linking footfall patterns to actual sell-through rates[cite: 17, 95].</p>
-
-                                </li>
-
+                        <div class="space-y-4">
+                            <p class="text-[10px] font-black uppercase text-slate-500">Ops & Analytics</p>
+                            <ul class="text-[11px] text-slate-400 space-y-2">
+                                <li>• Business Analytics</li>
+                                <li>• Supply Chain Management</li>
+                                <li>• Operations Management</li>
+                                <li>• Financial Management</li>
                             </ul>
-
                         </div>
-
                     </div>
-
                 </div>
 
+                <div class="reveal grid md:grid-cols-2 gap-16">
+                    <div class="timeline-border">
+                        <div class="timeline-marker border-slate-500"></div>
+                        <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">2021 – 2024</span>
+                        <h4 class="text-3xl font-bold mt-4 leading-tight">B.Com (Professional Accounting)</h4>
+                        <p class="text-slate-400 mt-2 italic text-sm">The Madura College | CGPA: 7.4/10</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 bg-white/5 p-10 rounded-3xl border border-white/10">
+                        <div class="space-y-4">
+                            <p class="text-[10px] font-black uppercase text-slate-500">Financial Core</p>
+                            <ul class="text-[11px] text-slate-400 space-y-2">
+                                <li>• Financial Reporting</li>
+                                <li>• Auditing & Assurance</li>
+                                <li>• Corporate Finance</li>
+                                <li>• Cost Accounting</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-4">
+                            <p class="text-[10px] font-black uppercase text-slate-500">Legal & Tax</p>
+                            <ul class="text-[11px] text-slate-400 space-y-2">
+                                <li>• Business Laws</li>
+                                <li>• Direct & Indirect Taxation</li>
+                                <li>• Company Law</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </section>
 
-
-    <section id="skills" class="py-32 bg-slate-50">
-
-        <div class="container mx-auto px-6">
-
-            <div class="text-center max-w-2xl mx-auto space-y-4 mb-24">
-
-                <h2 class="text-sm font-black uppercase tracking-[0.4em] text-blue-600">Technical Stack</h2>
-
-                <h3 class="text-4xl font-extrabold tracking-tight">Software & Functional Proficiency [cite: 6, 39, 48, 75, 85, 113]</h3>
-
-            </div>
-
-
-            <div class="bento-grid">
-
-                <div class="bento-item col-span-2 row-span-1 bg-white flex flex-col justify-between">
-
-                    <div>
-
-                        <div class="flex justify-between items-center mb-6">
-
-                            <i data-lucide="code-2" class="text-blue-600 w-8 h-8"></i>
-
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Advanced</span>
-
-                        </div>
-
-                        <h4 class="text-2xl font-bold">Python & SQL </h4>
-
-                        <p class="text-slate-500 mt-2 text-sm">Focus on Pandas for data manipulation and Basic-level querying for large datasets.</p>
-
-                    </div>
-
-                    <div class="flex gap-2">
-
-                        <span class="px-3 py-1 bg-slate-100 rounded-full text-[10px] font-bold">PANDAS</span>
-
-                        <span class="px-3 py-1 bg-slate-100 rounded-full text-[10px] font-bold">BASIC SCRIPTS</span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="bento-item col-span-1 row-span-1 flex flex-col justify-center items-center text-center">
-
-                    <i data-lucide="table" class="text-green-600 w-12 h-12 mb-4"></i>
-
-                    <h4 class="font-bold uppercase tracking-widest text-xs">Excel Mastery </h4>
-
-                    <p class="text-slate-400 text-[10px] mt-2">VLOOKUP, Pivot Tables, Performance Dashboards[cite: 114].</p>
-
-                </div>
-
-
-                <div class="bento-item col-span-1 row-span-1 flex flex-col justify-center items-center text-center bg-blue-600 text-white border-blue-600">
-
-                    <i data-lucide="cpu" class="text-white w-12 h-12 mb-4"></i>
-
-                    <h4 class="font-bold uppercase tracking-widest text-xs tracking-tighter">SAP FICO Certification</h4>
-
-                    <p class="text-blue-200 text-[10px] mt-2">Power User Training via ICMAI.</p>
-
-                </div>
-
-
-                <div class="bento-item col-span-2 row-span-1 bg-slate-900 text-white border-slate-900">
-
-                    <div class="flex flex-col h-full justify-between">
-
-                        <div>
-
-                            <h4 class="text-2xl font-bold">Marketing Management [cite: 33, 35, 71, 109]</h4>
-
-                            <p class="text-slate-400 mt-2 text-sm italic">Applied 4P/7P frameworks to real-world brand challenges[cite: 23].</p>
-
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4 text-[10px] font-bold uppercase tracking-widest">
-
-                            <span class="text-blue-400"># Consumer Psychology [cite: 24, 35, 109]</span>
-
-                            <span class="text-blue-400"># BTL Promotion [cite: 7, 11]</span>
-
-                            <span class="text-blue-400"># Brand Positioning [cite: 21]</span>
-
-                            <span class="text-blue-400"># Sales Conversion [cite: 15, 57]</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="bento-item col-span-2 row-span-1 bg-white">
-
-                    <div class="flex items-center gap-6 h-full">
-
-                        <div class="w-1/3 bg-slate-50 rounded-2xl h-full flex items-center justify-center">
-
-                            <i data-lucide="palette" class="text-slate-300 w-16 h-16"></i>
-
-                        </div>
-
-                        <div class="w-2/3">
-
-                            <h4 class="text-xl font-bold uppercase">Visual Marketing [cite: 25, 40, 76, 114]</h4>
-
-                            <p class="text-slate-500 text-sm mt-2">Advanced Canva for high-impact campaign decks, event posters, and visual storytelling[cite: 25, 27, 28, 40, 76, 114].</p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+    <section id="certs" class="py-40 container mx-auto px-8">
+        <div class="text-center mb-32 reveal">
+            <h2 class="text-xs font-black uppercase tracking-[0.4em] text-blue-600 mb-4">Certification Registry</h2>
+            <h3 class="text-5xl font-extrabold tracking-tight">Professional <span class="text-slate-400 italic">Validations</span></h3>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="reveal p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-200 transition">
+                <i data-lucide="award" class="text-blue-600 mb-6"></i>
+                <h5 class="text-lg font-bold leading-tight">Digital Marketing & E-commerce Certificate</h5>
+                <p class="text-[10px] font-black text-slate-400 uppercase mt-4">Google (Coursera) | 2025</p>
+            </div>
+            <div class="reveal p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-200 transition">
+                <i data-lucide="award" class="text-blue-600 mb-6"></i>
+                <h5 class="text-lg font-bold leading-tight">SAP (FI-CO) Power User Training</h5>
+                <p class="text-[10px] font-black text-slate-400 uppercase mt-4">ICMAI | 2023</p>
+            </div>
+            <div class="reveal p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-200 transition">
+                <i data-lucide="award" class="text-blue-600 mb-6"></i>
+                <h5 class="text-lg font-bold leading-tight">Scientific Computing with Python</h5>
+                <p class="text-[10px] font-black text-slate-400 uppercase mt-4">freeCodeCamp | 2023</p>
+            </div>
+            <div class="reveal p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-200 transition">
+                <i data-lucide="award" class="text-blue-600 mb-6"></i>
+                <h5 class="text-lg font-bold leading-tight">Financial Statement & Ratio Analysis</h5>
+                <p class="text-[10px] font-black text-slate-400 uppercase mt-4">University of Illinois | 2025</p>
+            </div>
+            <div class="reveal p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-200 transition">
+                <i data-lucide="award" class="text-blue-600 mb-6"></i>
+                <h5 class="text-lg font-bold leading-tight">Responsive Web Design</h5>
+                <p class="text-[10px] font-black text-slate-400 uppercase mt-4">freeCodeCamp | 2023</p>
+            </div>
+            <div class="reveal p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-200 transition">
+                <i data-lucide="award" class="text-blue-600 mb-6"></i>
+                <h5 class="text-lg font-bold leading-tight">AI and Machine Learning Program</h5>
+                <p class="text-[10px] font-black text-slate-400 uppercase mt-4">Madura College | 2023</p>
+            </div>
+        </div>
     </section>
 
-
-    <section id="academics" class="py-32 container mx-auto px-6">
-
-        <div class="section-header reveal-up mb-24">
-
-            <h2 class="text-4xl font-extrabold tracking-tight uppercase">Academic Timeline [cite: 32, 68, 107]</h2>
-
-            <p class="text-slate-500">Qualifications and Syllabus Mastery[cite: 32, 68, 107].</p>
-
-        </div>
-
-
-        <div class="relative max-w-4xl mx-auto space-y-20">
-
-            <div class="timeline-line no-print"></div>
-
-
-            <div class="relative reveal-up flex flex-col md:flex-row gap-12 items-start">
-
-                <div class="md:w-1/2 text-right">
-
-                    <span class="text-xs font-black text-blue-600 uppercase tracking-[0.3em]">2025 – Present [cite: 34, 70, 108]</span>
-
-                    <h3 class="text-2xl font-bold mt-2">PGDM - Marketing Major [cite: 33, 34, 69, 70, 108]</h3>
-
-                    <p class="text-slate-500 italic">Thiagarajar School of Management [cite: 34, 70, 108]</p>
-
+    <footer class="py-40 border-t border-slate-100">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-20">
+                <div class="space-y-6 text-center md:text-left">
+                    <h2 class="text-6xl font-extrabold tracking-tighter italic">Let's <span class="text-blue-600">Connect.</span></h2>
+                    <p class="text-slate-400 max-w-sm mx-auto md:mx-0 font-medium">Available for Strategic Internships and Analytics Projects in 2026.</p>
                 </div>
-
-                <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow-lg"></div>
-
-                <div class="md:w-1/2 bg-slate-50 p-8 rounded-3xl">
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-4 tracking-widest">Syllabus Highlight [cite: 35, 71, 109]</p>
-
-                    <ul class="text-xs text-slate-600 space-y-2">
-
-                        <li>• Integrated Marketing Communications (IMC) [cite: 35]</li>
-
-                        <li>• Marketing Research & Business Analytics [cite: 35, 71, 109]</li>
-
-                        <li>• Supply Chain & Operations Management [cite: 71, 109]</li>
-
-                        <li>• Organizational Behaviour [cite: 71, 109]</li>
-
-                    </ul>
-
+                <div class="grid grid-cols-2 gap-8">
+                    <a href="mailto:sv100204@gmail.com" class="flex flex-col items-center gap-3">
+                        <div class="w-16 h-16 rounded-full border border-slate-200 flex items-center justify-center bg-white hover:bg-blue-600 hover:text-white transition duration-500"><i data-lucide="mail"></i></div>
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Email</span>
+                    </a>
+                    <a href="tel:+918903720129" class="flex flex-col items-center gap-3">
+                        <div class="w-16 h-16 rounded-full border border-slate-200 flex items-center justify-center bg-white hover:bg-blue-600 hover:text-white transition duration-500"><i data-lucide="phone"></i></div>
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Call</span>
+                    </a>
+                    <a href="https://linkedin.com/in/rsv2004" target="_blank" class="flex flex-col items-center gap-3">
+                        <div class="w-16 h-16 rounded-full border border-slate-200 flex items-center justify-center bg-white hover:bg-blue-600 hover:text-white transition duration-500"><i data-lucide="linkedin"></i></div>
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/srini-vasan-r10" target="_blank" class="flex flex-col items-center gap-3">
+                        <div class="w-16 h-16 rounded-full border border-slate-200 flex items-center justify-center bg-white hover:bg-blue-600 hover:text-white transition duration-500"><i data-lucide="github"></i></div>
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">GitHub</span>
+                    </a>
                 </div>
-
             </div>
-
-
-            <div class="relative reveal-up flex flex-col md:flex-row-reverse gap-12 items-start">
-
-                <div class="md:w-1/2">
-
-                    <span class="text-xs font-black text-slate-400 uppercase tracking-[0.3em]">2022 – 2025 [cite: 37, 73, 111]</span>
-
-                    <h3 class="text-2xl font-bold mt-2">B.Com (Professional Accounting) [cite: 36, 37, 72, 73, 110, 111]</h3>
-
-                    <p class="text-slate-500 italic">The Madura College | CGPA: 6.6 [cite: 37, 73, 111]</p>
-
-                </div>
-
-                <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow-lg"></div>
-
-                <div class="md:w-1/2 bg-slate-50 p-8 rounded-3xl">
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-4 tracking-widest">Core Domain Knowledge [cite: 38, 74, 112]</p>
-
-                    <ul class="text-xs text-slate-600 space-y-2">
-
-                        <li>• Corporate Finance & Business Laws [cite: 38, 74, 112]</li>
-
-                        <li>• Financial Reporting & Auditing [cite: 38, 74, 112]</li>
-
-                        <li>• Taxation & Cost Accounting [cite: 38, 112]</li>
-
-                    </ul>
-
-                </div>
-
+            <div class="mt-40 pt-10 border-t border-slate-100 text-center">
+                <span class="text-[9px] font-black uppercase text-slate-300 tracking-[0.8em]">SRINIVASAN R. // © 2026 // BUILT FOR EXCELLENCE</span>
             </div>
-
         </div>
-
-    </section>
-
-
-    <section id="certifications" class="py-32 bg-slate-900 text-white">
-
-        <div class="container mx-auto px-6">
-
-            <h2 class="text-4xl font-extrabold tracking-tight text-center mb-24">Global Certification Matrix</h2>
-
-            
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="space-y-6">
-
-                    <h4 class="text-xs font-black text-blue-400 uppercase tracking-widest border-l-2 border-blue-400 pl-4">Digital Marketing (2025)</h4>
-
-                    <div class="glass p-6 rounded-2xl hover:bg-white/10 transition">
-
-                        <p class="text-sm font-bold">Foundations of Digital Marketing & E-commerce</p>
-
-                        <p class="text-[10px] text-slate-400 mt-1">Provider: Google (Coursera)</p>
-
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl hover:bg-white/10 transition">
-
-                        <p class="text-sm font-bold">Attract and Engage Customers</p>
-
-                        <p class="text-[10px] text-slate-400 mt-1">Provider: Google (Coursera)</p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="space-y-6">
-
-                    <h4 class="text-xs font-black text-green-400 uppercase tracking-widest border-l-2 border-green-400 pl-4">Strategy & Analysis</h4>
-
-                    <div class="glass p-6 rounded-2xl hover:bg-white/10 transition">
-
-                        <p class="text-sm font-bold">Financial Statement & Ratio Analysis</p>
-
-                        <p class="text-[10px] text-slate-400 mt-1">University of Illinois</p>
-
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl hover:bg-white/10 transition">
-
-                        <p class="text-sm font-bold">Organisational Behaviour: Know your people</p>
-
-                        <p class="text-[10px] text-slate-400 mt-1">Macquarie University</p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="space-y-6">
-
-                    <h4 class="text-xs font-black text-purple-400 uppercase tracking-widest border-l-2 border-purple-400 pl-4">Tech & ML (2023)</h4>
-
-                    <div class="glass p-6 rounded-2xl hover:bg-white/10 transition">
-
-                        <p class="text-sm font-bold">Scientific Computing with Python</p>
-
-                        <p class="text-[10px] text-slate-400 mt-1">freeCodeCamp</p>
-
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl hover:bg-white/10 transition">
-
-                        <p class="text-sm font-bold">AI and Machine Learning</p>
-
-                        <p class="text-[10px] text-slate-400 mt-1">The Madura College & Maxelerator</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <footer id="contact" class="py-32 bg-white">
-
-        <div class="container mx-auto px-6 text-center space-y-12">
-
-            <h2 class="text-5xl font-extrabold tracking-tighter italic">Let's build something <span class="text-blue-600">impactful.</span></h2>
-
-            <div class="flex flex-wrap justify-center gap-10 pt-10">
-
-                <a href="mailto:sv100204@gmail.com" class="flex items-center gap-3 text-slate-500 hover:text-slate-900 transition font-bold">
-
-                    <i data-lucide="mail"></i> sv100204@gmail.com
-
-                </a>
-
-                <a href="tel:+918903720129" class="flex items-center gap-3 text-slate-500 hover:text-slate-900 transition font-bold">
-
-                    <i data-lucide="phone"></i> +91 89037 20129 [cite: 2, 44, 80]
-
-                </a>
-
-            </div>
-
-            <p class="text-[10px] font-black uppercase tracking-[0.8em] pt-20 text-slate-300">Srinivasan R. // © 2026 // Management Portfolio</p>
-
-        </div>
-
     </footer>
 
-
     <script>
-
-        // Initialize Lucide
-
+        // Initialize Icons
         lucide.createIcons();
 
-
-        // Reveal Animations
-
+        // Reveal Animation
         const observerOptions = { threshold: 0.1 };
-
         const observer = new IntersectionObserver((entries) => {
-
             entries.forEach(entry => {
-
                 if (entry.isIntersecting) entry.target.classList.add('active');
-
             });
-
         }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
-
-
-        // Typewriter Effect
-
-        const phrases = ["Consumer Insights", "Management Strategy", "Data Analytics", "Operational Excellence"];
-
-        let phraseIdx = 0, charIdx = 0, isDeleting = false;
+        // TYPEWRITER ENGINE
+        const roles = ["Consumer Insights", "Management Strategy", "Data Analytics", "Field Operations"];
+        let roleIdx = 0, charIdx = 0, isDeleting = false;
+        const target = document.getElementById('type-target');
 
         function type() {
-
-            const current = phrases[phraseIdx];
-
-            const display = isDeleting ? current.substring(0, charIdx--) : current.substring(0, charIdx++);
-
-            document.getElementById('typewriter').textContent = display;
-
-            if (!isDeleting && charIdx > current.length) { isDeleting = true; setTimeout(type, 2000); }
-
-            else if (isDeleting && charIdx < 0) { isDeleting = false; phraseIdx = (phraseIdx + 1) % phrases.length; setTimeout(type, 500); }
-
-            else setTimeout(type, isDeleting ? 50 : 100);
-
+            const current = roles[roleIdx];
+            if (!isDeleting && charIdx <= current.length) {
+                target.textContent = current.substring(0, charIdx++);
+                setTimeout(type, 120);
+            } else if (isDeleting && charIdx >= 0) {
+                target.textContent = current.substring(0, charIdx--);
+                setTimeout(type, 60);
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) roleIdx = (roleIdx + 1) % roles.length;
+                setTimeout(type, isDeleting ? 2500 : 500);
+            }
         }
-
         type();
-
     </script>
-
 </body>
-
 </html>
