@@ -3,6 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srinidhi R — Résumé</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF8F3;
+            --ink: #1A1714;
+            --ink-60: rgba(26,23,20,0.65);
+            --ink-20: rgba(26,23,20,0.1);
+            --gold: #B8860B;
+            --rust: #C44B2B;
+            --surface: #F1EEE6;
+            --border: rgba(26,23,20,0.12);
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'DM Sans', system-ui, sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--surface);
+            color: var(--ink);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 20px;
+        }
+
+        /* Top nav bar (Screen only) */
+        .topbar {
+            max-width: 850px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-60);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--gold); }
+        .print-btn {
+            padding: 10px 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: var(--ink);
+            color: var(--cream);
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .print-btn:hover { background: var(--gold); }
+
+        /* Resume A4 Sheet */
+        .resume-sheet {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--cream);
+            box-shadow: 0 10px 40px rgba(26,23,20,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .resume-header {
+            padding: 40px 50px 30px;
+            border-bottom: 2px solid var(--ink);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .header-left { flex: 1; }
+        .resume-name {
+            font-family: var(--serif);
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--ink);
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+        .resume-name em { font-style: italic; color: var(--gold); }
+        .resume-role {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--ink-60);
+            margin-bottom: 20px;
+        }
+        
+        .contact-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .contact-strip a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .contact-strip a:hover { color: var(--gold); }
+        .contact-separator { color: var(--gold); margin: 0 4px; }
+
+        /* Body Layout */
+        .resume-body {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+        }
+        .main-col { padding: 35px 40px 40px 50px; border-right: 1px solid var(--border); }
+        .side-col { padding: 35px 40px 40px 30px; background: rgba(26,23,20,0.02); }
+
+        /* Section Titles */
+        .section-title {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .side-col .section-title { font-size: 1.1rem; }
+
+        /* Professional Summary */
+        .summary {
+            font-size: 0.9rem;
+            color: var(--ink-60);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        .summary strong { color: var(--ink); font-weight: 600; }
+
+        /* Experience Items */
+        .exp-item { margin-bottom: 24px; }
+        .exp-item:last-child { margin-bottom: 0; }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+        .exp-role { font-weight: 700; font-size: 1rem; color: var(--ink); }
+        .exp-date { font-size: 0.75rem; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .exp-org { font-size: 0.85rem; color: var(--ink-60); font-weight: 600; margin-bottom: 10px; }
+        .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .exp-bullets li {
+            padding-left: 18px;
+            position: relative;
+            font-size: 0.85rem;
+            color: var(--ink-60);
+            line-height: 1.6;
+        }
+        .exp-bullets li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Sidebar Elements */
+        .skill-group { margin-bottom: 28px; }
+        .skill-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--ink-60);
+            padding: 4px 10px;
+            border-radius: 2px;
+        }
+
+        /* Education */
+        .edu-item { margin-bottom: 20px; }
+        .edu-degree { font-weight: 700; font-size: 0.9rem; color: var(--ink); line-height: 1.3; }
+        .edu-inst { font-size: 0.8rem; color: var(--ink-60); margin-top: 4px; }
+        .edu-meta { font-size: 0.75rem; color: var(--gold); font-weight: 600; margin-top: 4px; }
+
+        /* Print CSS */
+        @media print {
+            body { background: white; padding: 0; }
+            .topbar { display: none; }
+            .resume-sheet { box-shadow: none; max-width: 100%; width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .resume-body { grid-template-columns: 1fr; }
+            .main-col { border-right: none; border-bottom: 1px solid var(--border); padding: 30px; }
+            .side-col { padding: 30px; }
+            .resume-header { padding: 30px; flex-direction: column; align-items: flex-start; }
+            .resume-name { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+    <button class="print-btn" onclick="window.print()">Download PDF</button>
+</div>
+
+<div class="resume-sheet">
+    <header class="resume-header">
+        <div class="header-left">
+            <div class="resume-role">Management Trainee · Marketing & Operations</div>
+            <h1 class="resume-name">Srinidhi <em>R.</em></h1>
+            <div class="contact-strip">
+                <a href="mailto:srinivasanr@tsm.ac.in">srinivasanr@tsm.ac.in</a>
+                <span class="contact-separator">|</span>
+                <a href="https://linkedin.com/in/srinivasan-r" target="_blank">linkedin.com/in/srinivasan-r</a>
+                <span class="contact-separator">|</span>
+                <span>+91 90805 06437</span>
+                <span class="contact-separator">|</span>
+                <span>Madurai, TN</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="resume-body">
+        <main class="main-col">
+            <p class="summary">
+                Data-driven Management Trainee specializing in the intersection of <strong>BTL Marketing, Operations Management, and Analytics</strong>. Proven track record in FMCG field sales and market penetration, coupled with advanced proficiency in Python, R, and SQL to translate complex datasets into actionable operational strategies and consumer insights.
+            </p>
+
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Market Penetration Strategist (Live Project)</div>
+                    <div class="exp-date">Mar 2026 — Apr 2026</div>
+                </div>
+                <div class="exp-org">Cavinkare (Ruchi)</div>
+                <ul class="exp-bullets">
+                    <li>Spearheaded a field sales and penetration challenge for Ruchi 5Rs. Pickle Sachets across targeted demographics in Madurai.</li>
+                    <li>Utilized consumer insights to optimize BTL distribution routes, enhancing local market presence and product visibility.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">FMCG Direct Sales Associate</div>
+                    <div class="exp-date">Jan 2026</div>
+                </div>
+                <div class="exp-org">Wipro</div>
+                <ul class="exp-bullets">
+                    <li>Executed ground-level direct sales strategies in the Ramnad district, engaging directly with retailers and end-consumers.</li>
+                    <li>Gathered actionable retail data to streamline supply chain logistics and improve operational turnaround times.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Website Content Team Head</div>
+                    <div class="exp-date">2025 — Present</div>
+                </div>
+                <div class="exp-org">FOS 2026 Conference</div>
+                <ul class="exp-bullets">
+                    <li>Directing digital content strategy and analytics for a major academic conference, ensuring high user engagement and seamless information flow.</li>
+                    <li>Managing cross-functional team workflows using structured project management tools (Notion/Obsidian).</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Live Sales Project Associate</div>
+                    <div class="exp-date">Sep 2025</div>
+                </div>
+                <div class="exp-org">Akash Foods</div>
+                <ul class="exp-bullets">
+                    <li>Successfully pitched and sold multigrain pasta and noodle combos directly to consumers in Aathikulam, Madurai.</li>
+                    <li>Analyzed ground-level pricing strategies to optimize future BTL operations and local distribution channels.</li>
+                </ul>
+            </div>
+        </main>
+
+        <aside class="side-col">
+            <h2 class="section-title">Expertise</h2>
+            
+            <div class="skill-group">
+                <div class="skill-title">Core Domains</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Operations Management</span>
+                    <span class="skill-tag">BTL Marketing</span>
+                    <span class="skill-tag">FMCG Sales</span>
+                    <span class="skill-tag">Consumer Insights</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-title">Data & Tech</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">Advanced Excel</span>
+                    <span class="skill-tag">Notion & Obsidian</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-title">Languages</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">English (Professional)</span>
+                    <span class="skill-tag">Tamil (Native)</span>
+                    <span class="skill-tag">Hindi</span>
+                    <span class="skill-tag">Malayalam</span>
+                    <span class="skill-tag">Spanish</span>
+                </div>
+            </div>
+
+            <h2 class="section-title">Education</h2>
+            <div class="edu-item">
+                <div class="edu-degree">PGDM (Finance & Marketing)</div>
+                <div class="edu-inst">Thiagarajar School of Management</div>
+                <div class="edu-meta">2024 — 2026</div>
+            </div>
+            <div class="edu-item">
+                <div class="edu-degree">B.Com</div>
+                <div class="edu-inst">The Madura College</div>
+                <div class="edu-meta">2020 — 2023 | CGPA: 8.5</div>
+            </div>
+
+            <h2 class="section-title">Certifications</h2>
+            <div class="edu-item">
+                <div class="edu-degree" style="font-size: 0.8rem;">Foundations of Project Management</div>
+                <div class="edu-inst">Google</div>
+            </div>
+            <div class="edu-item">
+                <div class="edu-degree" style="font-size: 0.8rem;">Prompt Engineering for ChatGPT</div>
+                <div class="edu-inst">Vanderbilt University</div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srinivasan R — Résumé</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
